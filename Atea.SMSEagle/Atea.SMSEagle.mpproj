@@ -51,7 +51,9 @@
       <PackageToBundle>false</PackageToBundle>
     </ManagementPackReference>
   </ItemGroup>
-    <ItemGroup>
+  <ItemGroup>
+    <Folder Include="HealthModel" />
+    <Folder Include="HealthModel\Rules" />
     <Folder Include="TypeLibrary" />
     <Folder Include="Scripts" />
     <Folder Include="TypeLibrary\ModuleTypes" />
@@ -61,12 +63,22 @@
     <EmbeddedResource Include="Scripts\Send-EagleSMS.ps1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HealthModel\Rules\SendSMSRules.mptg.mpx">
+      <SubType>Code</SubType>
+      <DependentUpon>HealthModel\Rules\SendSMSRules.mptg</DependentUpon>
+    </Compile>
     <Compile Include="TypeLibrary\ModuleTypes\WriteActions\SendSMS.WA.mpx">
       <SubType>Code</SubType>
     </Compile>
-	    <Compile Include="ManagementPack.mpx">
+    <Compile Include="ManagementPack.mpx">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="HealthModel\Rules\SendSMSRules.mptg">
+      <SubType>Content</SubType>
+      <Generator>FragmentGenerator</Generator>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VSAC\Microsoft.SystemCenter.OperationsManager.targets" />
 </Project>
