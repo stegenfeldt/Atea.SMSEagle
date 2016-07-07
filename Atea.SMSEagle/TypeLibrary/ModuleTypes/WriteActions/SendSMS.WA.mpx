@@ -1,0 +1,65 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <ModuleTypes>
+      <WriteActionModuleType ID="Atea.SMSEagle.SendSMS.WriteAction" Accessibility="Internal">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowershellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element name="SMSEagleIP" type="NonNullString" />
+          <xsd:element name="Message" type="NonNullString" />
+          <xsd:element name="Receiver" type="NonNullString" />
+          <xsd:element name="User" type="NonNullString" />
+          <xsd:element name="Password" type="NonNullString" />
+          <xsd:element name="IntervalSeconds" type="xsd:integer" />
+          <xsd:element name="TimeoutSeconds" type="xsd:integer" />
+          <xsd:element name="SyncTime" type="xsd:string" />
+        </Configuration>
+        <ModuleImplementation>
+          <Composite>
+            <MemberModules>
+              <DataSource ID="Scheduler" TypeID="System!System.SimpleScheduler">
+                <IntervalSeconds>$Config/IntervalSeconds$</IntervalSeconds>
+                <SyncTime>$Config/SyncTime$</SyncTime>
+              </DataSource>
+              <WriteAction ID="SendSMS" TypeID="Windows!Microsoft.Windows.PowerShellWriteAction" Comment="Executes a powershell script to send an SMS through SMS Eagle">
+                <ScriptName>Send-EagleSMS.ps1</ScriptName>
+                <ScriptBody>$IncludeFileContent/Scrips/Send-EagleSMS.ps1$</ScriptBody>
+                <Parameters>
+                  <Parameter>
+                    <Name>SMSEagleIP</Name>
+                    <Value>$Config/SMSEagleIP$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>Message</Name>
+                    <Value>$Config/Message$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>Receiver</Name>
+                    <Value>$Config/Receiver$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>User</Name>
+                    <Value>$Config/User$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>Password</Name>
+                    <Value>$Config/Password$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>$Config/Seconds$</TimeoutSeconds>
+              </WriteAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="SendSMS">
+                <Node ID="Scheduler" />
+              </Node>
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>Windows!Microsoft.Windows.SerializedObjectData</OutputType>
+        <InputType>System!System.BaseData</InputType>
+      </WriteActionModuleType>
+    </ModuleTypes>
+  </TypeDefinitions>
+</ManagementPackFragment>
