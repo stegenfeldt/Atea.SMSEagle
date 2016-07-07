@@ -51,5 +51,11 @@
       <PackageToBundle>false</PackageToBundle>
     </ManagementPackReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scripts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Send-EagleSMS.ps1" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VSAC\Microsoft.SystemCenter.OperationsManager.targets" />
 </Project>
