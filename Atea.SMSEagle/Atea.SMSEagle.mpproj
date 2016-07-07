@@ -51,7 +51,7 @@
       <PackageToBundle>false</PackageToBundle>
     </ManagementPackReference>
   </ItemGroup>
-  <ItemGroup>
+    <ItemGroup>
     <Folder Include="TypeLibrary" />
     <Folder Include="Scripts" />
     <Folder Include="TypeLibrary\ModuleTypes" />
@@ -62,6 +62,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TypeLibrary\ModuleTypes\WriteActions\SendSMS.WA.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+	    <Compile Include="ManagementPack.mpx">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
