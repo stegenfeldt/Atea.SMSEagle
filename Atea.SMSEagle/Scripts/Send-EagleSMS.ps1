@@ -12,6 +12,6 @@ $smseagleUrl = "http://$SMSEagleIP/index.php/jsonrpc/sms"
 
 $header = @{"Content-Type"="text/plain"}
 
-$jsonBody=@{method="sms.send_sms";params=@{login=$smseagleLogin;pass=$smseaglePass;to=$Receiver;message=$Message}} | ConvertTo-Json -Compress
+$jsonBody=@{method="sms.send_sms";params=@{login=$User;pass=$Password;to=$Receiver;message=$Message;flash=1}} | ConvertTo-Json -Compress
 
 Invoke-RestMethod -Uri $smseagleUrl -Headers $header -Body $jsonBody -Method Post

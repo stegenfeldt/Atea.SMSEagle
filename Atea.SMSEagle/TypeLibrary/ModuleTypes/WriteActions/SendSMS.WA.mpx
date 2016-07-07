@@ -13,6 +13,14 @@
           <xsd:element name="Password" type="NonNullString" />
           <xsd:element name="TimeoutSeconds" type="xsd:integer" />
         </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="SMSEagleIP" ParameterType="string" Selector="$Config/SMSEagleIP$" Comment="IP Address to the SMS Eagle Gateway"/>
+          <OverrideableParameter ID="Message" ParameterType="string" Selector="$Config/Message$" Comment="What SMS message yo want to send"/>
+          <OverrideableParameter ID="Receiver" ParameterType="string" Selector="$Config/Receiver$" Comment="The recipient, enter cell number international style (e.g. +4670123456)"/>
+          <OverrideableParameter ID="User" ParameterType="string" Selector="$Config/User$" Comment="Username, needs to be able to send an sms"/>
+          <OverrideableParameter ID="Password" ParameterType="string" Selector="$Config/Password$" Comment="Password for the user. Yes, this is currently clear-text. Future iterations will fix this."/>
+          <OverrideableParameter ID="TimeoutSeconds" ParameterType="int" Selector="$Config/TimeoutSeconds$" Comment="How long do you want to wait for the script to finish before killing it?"/>
+        </OverrideableParameters>
         <ModuleImplementation>
           <Composite>
             <MemberModules>
