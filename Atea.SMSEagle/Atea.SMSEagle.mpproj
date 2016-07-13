@@ -75,6 +75,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AteaST.snk">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="HealthModel\Rules\SendSMSRules.mptg">
       <SubType>Content</SubType>
       <Generator>FragmentGenerator</Generator>
