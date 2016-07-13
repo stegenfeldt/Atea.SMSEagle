@@ -4,7 +4,7 @@
       <CustomRuleConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
         <Id>Atea.SMSEagle.SendDailyCheckinSMS.Rule</Id>
         <DisplayName>SMS Eagle - Send Daily checkin SMS</DisplayName>
-        <Description>Should not have to say this, but you MUST configure User, Password and SMSEagle IP before enabling this rule!</Description>
+        <Description>or this script to work you MUST create an override to configure SMS Eagle IP and receiver.</Description>
         <Category>Maintenance</Category>
         <ConfirmDelivery>false</ConfirmDelivery>
         <Target>SC!Microsoft.SystemCenter.AllManagementServersPool</Target>
@@ -25,7 +25,8 @@
           <RuleWriteActionItem>
             <WriteActionId>SendSMS</WriteActionId>
             <WriteActionComment>Executes powershel script to send SMS using SMS Eagle JSON Api. IP, User and Password needs to be properly configured.</WriteActionComment>
-            <WriteActionConfig>&lt;SMSEagleIP&gt;0.0.0.0&lt;/SMSEagleIP&gt;&lt;Message&gt;SCOM and SMS Eagle Daily Checkin!&lt;/Message&gt;&lt;Receiver&gt;+4612345678&lt;/Receiver&gt;&lt;User&gt;admin&lt;/User&gt;&lt;Password&gt;password&lt;/Password&gt;&lt;TimeoutSeconds&gt;120&lt;/TimeoutSeconds&gt;</WriteActionConfig>
+            <WriteActionConfig>&lt;SMSEagleIP&gt;0.0.0.0&lt;/SMSEagleIP&gt;&lt;Message&gt;SCOM and SMS Eagle Daily Checkin!&lt;/Message&gt;&lt;Receiver&gt;+4612345678&lt;/Receiver&gt;&lt;TimeoutSeconds&gt;120&lt;/TimeoutSeconds&gt;</WriteActionConfig>
+            <WriteActionRunAs />
             <WriteActionType>Atea.SMSEagle.SendSMS.WriteAction</WriteActionType>
             <WriteActionTarget />
           </RuleWriteActionItem>

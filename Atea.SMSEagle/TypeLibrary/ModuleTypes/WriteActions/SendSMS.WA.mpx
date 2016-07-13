@@ -1,7 +1,7 @@
 ﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <TypeDefinitions>
     <ModuleTypes>
-      <WriteActionModuleType ID="Atea.SMSEagle.SendSMS.WriteAction" Accessibility="Internal">
+      <WriteActionModuleType ID="Atea.SMSEagle.SendSMS.WriteAction" Accessibility="Internal" RunAs="Atea.SMSEagle.Login">
         <Configuration>
           <IncludeSchemaTypes>
             <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
@@ -9,16 +9,12 @@
           <xsd:element name="SMSEagleIP" type="NonNullString" />
           <xsd:element name="Message" type="NonNullString" />
           <xsd:element name="Receiver" type="NonNullString" />
-          <xsd:element name="User" type="NonNullString" />
-          <xsd:element name="Password" type="NonNullString" />
           <xsd:element name="TimeoutSeconds" type="xsd:integer" />
         </Configuration>
         <OverrideableParameters>
           <OverrideableParameter ID="SMSEagleIP" ParameterType="string" Selector="$Config/SMSEagleIP$" Comment="IP Address to the SMS Eagle Gateway"/>
           <OverrideableParameter ID="Message" ParameterType="string" Selector="$Config/Message$" Comment="What SMS message yo want to send"/>
           <OverrideableParameter ID="Receiver" ParameterType="string" Selector="$Config/Receiver$" Comment="The recipient, enter cell number international style (e.g. +4670123456)"/>
-          <OverrideableParameter ID="User" ParameterType="string" Selector="$Config/User$" Comment="Username, needs to be able to send an sms"/>
-          <OverrideableParameter ID="Password" ParameterType="string" Selector="$Config/Password$" Comment="Password for the user. Yes, this is currently clear-text. Future iterations will fix this."/>
           <OverrideableParameter ID="TimeoutSeconds" ParameterType="int" Selector="$Config/TimeoutSeconds$" Comment="How long do you want to wait for the script to finish before killing it?"/>
         </OverrideableParameters>
         <ModuleImplementation>
@@ -42,11 +38,11 @@
                   </Parameter>
                   <Parameter>
                     <Name>User</Name>
-                    <Value>$Config/User$</Value>
+                    <Value>$RunAs[Name='Atea.SMSEagle.Login']/UserName$</Value>
                   </Parameter>
                   <Parameter>
                     <Name>Password</Name>
-                    <Value>$Config/Password$</Value>
+                    <Value>$RunAs[Name='Atea.SMSEagle.Login']/Password$</Value>
                   </Parameter>
                 </Parameters>
                 <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
