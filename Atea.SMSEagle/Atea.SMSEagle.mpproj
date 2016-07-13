@@ -14,11 +14,11 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Debug\</OutputPath>
-    <GenerateSealed>false</GenerateSealed>
-    <Company>MyCompany</Company>
-    <Copyright>Copyright (c) MyCompany. All rights reserved.</Copyright>
-    <DelaySigning>false</DelaySigning>
-    <AssemblyOriginatorKeyFile />
+    <GenerateSealed>True</GenerateSealed>
+    <Company>Atea Sverige AB</Company>
+    <Copyright>Copyright (c) Atea Sverige AB. All rights reserved.</Copyright>
+    <DelaySigning>False</DelaySigning>
+    <AssemblyOriginatorKeyFile>AteaST.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DebugSymbols>false</DebugSymbols>
@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HealthModel" />
+    <Folder Include="HealthModel\SecureReferences" />
     <Folder Include="HealthModel\Rules" />
     <Folder Include="TypeLibrary" />
     <Folder Include="Scripts" />
@@ -66,6 +67,9 @@
     <Compile Include="HealthModel\Rules\SendSMSRules.mptg.mpx">
       <SubType>Code</SubType>
       <DependentUpon>HealthModel\Rules\SendSMSRules.mptg</DependentUpon>
+    </Compile>
+    <Compile Include="HealthModel\SecureReferences\SMSEagleLogin.mpx">
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="TypeLibrary\ModuleTypes\WriteActions\SendSMS.WA.mpx">
       <SubType>Code</SubType>
