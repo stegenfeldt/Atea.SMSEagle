@@ -32,7 +32,7 @@
   <ItemGroup>
     <ManagementPackReference Include="Microsoft.SystemCenter.Library">
       <Alias>SC</Alias>
-      <PackageToBundle>false</PackageToBundle>
+      <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
     <ManagementPackReference Include="Microsoft.Windows.Library">
       <Alias>Windows</Alias>
@@ -53,8 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HealthModel" />
+    <Folder Include="HealthModel\Discoveries" />
     <Folder Include="HealthModel\SecureReferences" />
     <Folder Include="HealthModel\Rules" />
+    <Folder Include="ServiceModel" />
+    <Folder Include="ServiceModel\Classes" />
+    <Folder Include="ServiceModel\RelationShips" />
     <Folder Include="TypeLibrary" />
     <Folder Include="Scripts" />
     <Folder Include="TypeLibrary\ModuleTypes" />
@@ -69,6 +73,12 @@
       <DependentUpon>HealthModel\Rules\SendSMSRules.mptg</DependentUpon>
     </Compile>
     <Compile Include="HealthModel\SecureReferences\SMSEagleLogin.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServiceModel\Classes\SMSEagleWatcher.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServiceModel\RelationShips\RMSHostsEagleWatcher.mpx">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TypeLibrary\ModuleTypes\WriteActions\SendSMS.WA.mpx">

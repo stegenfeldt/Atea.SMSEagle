@@ -1,7 +1,7 @@
 ﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <TypeDefinitions>
     <SecureReferences>
-      <SecureReference ID="Atea.SMSEagle.Login" Accessibility="Public" Context="SC!Microsoft.SystemCenter.AllManagementServersPool" Comment="Used as login account against SMS Eagle devices" />
+      <SecureReference ID="Atea.SMSEagle.Login" Accessibility="Public" Context="Atea.SMSEagle.SMSEagleWatcher" Comment="Used as login account against SMS Eagle devices" />
     </SecureReferences>
   </TypeDefinitions>
   <LanguagePacks>
