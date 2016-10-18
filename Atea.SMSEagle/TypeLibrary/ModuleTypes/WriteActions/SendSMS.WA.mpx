@@ -1,0 +1,61 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <ModuleTypes>
+      <WriteActionModuleType ID="Atea.SMSEagle.SendSMS.WriteAction" Accessibility="Internal">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element name="SMSEagleIP" type="NonNullString" />
+          <xsd:element name="Message" type="NonNullString" />
+          <xsd:element name="Receiver" type="NonNullString" />
+          <xsd:element name="TimeoutSeconds" type="xsd:integer" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="SMSEagleIP" ParameterType="string" Selector="$Config/SMSEagleIP$" Comment="IP Address to the SMS Eagle Gateway"/>
+          <OverrideableParameter ID="Message" ParameterType="string" Selector="$Config/Message$" Comment="What SMS message yo want to send"/>
+          <OverrideableParameter ID="Receiver" ParameterType="string" Selector="$Config/Receiver$" Comment="The recipient, enter cell number international style (e.g. +4670123456)"/>
+          <OverrideableParameter ID="TimeoutSeconds" ParameterType="int" Selector="$Config/TimeoutSeconds$" Comment="How long do you want to wait for the script to finish before killing it?"/>
+        </OverrideableParameters>
+        <ModuleImplementation>
+          <Composite>
+            <MemberModules>
+              <WriteAction ID="SendSMS" TypeID="Windows!Microsoft.Windows.PowerShellWriteAction" Comment="Executes a powershell script to send an SMS through SMS Eagle">
+                <ScriptName>Send-EagleSMS.ps1</ScriptName>
+                <ScriptBody>$IncludeFileContent/Scripts/Send-EagleSMS.ps1$</ScriptBody>
+                <Parameters>
+                  <Parameter>
+                    <Name>SMSEagleIP</Name>
+                    <Value>$Config/SMSEagleIP$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>Message</Name>
+                    <Value>$Config/Message$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>Receiver</Name>
+                    <Value>$Config/Receiver$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>SMSEagleUser</Name>
+                    <Value>$RunAs[Name='Atea.SMSEagle.Login']/UserName$</Value>
+                  </Parameter>
+                  <Parameter>
+                    <Name>SMSEaglePassword</Name>
+                    <Value>$RunAs[Name='Atea.SMSEagle.Login']/Password$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>$Config/TimeoutSeconds$</TimeoutSeconds>
+              </WriteAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="SendSMS" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <OutputType>Windows!Microsoft.Windows.SerializedObjectData</OutputType>
+        <InputType>System!System.BaseData</InputType>
+      </WriteActionModuleType>
+    </ModuleTypes>
+  </TypeDefinitions>
+</ManagementPackFragment>

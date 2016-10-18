@@ -1,0 +1,37 @@
+<TemplateGroup>
+  <Instances>
+    <Instance ID="Instancead122e8e2c2b461a804a5ac5069aa36f" Type="Microsoft.SystemCenter.Authoring.CodeGeneration.Monitoring.CustomRule" Version="1.0.0.0">
+      <CustomRuleConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <Id>Atea.SMSEagle.SendDailyCheckinSMS.Rule</Id>
+        <DisplayName>SMS Eagle - Send Daily checkin SMS</DisplayName>
+        <Description>or this script to work you MUST create an override to configure SMS Eagle IP and receiver.</Description>
+        <Category>Maintenance</Category>
+        <ConfirmDelivery>false</ConfirmDelivery>
+        <Target>SC!Microsoft.SystemCenter.AllManagementServersPool</Target>
+        <Enabled>false</Enabled>
+        <Remotable>true</Remotable>
+        <Priority>Normal</Priority>
+        <DiscardLevel>100</DiscardLevel>
+        <DataSources>
+          <RuleDataSourceItem>
+            <DataSourceId>Schedule</DataSourceId>
+            <DataSourceComment>Default interval is 86400 seconds (once per day), with sync time on 08:00 local time.</DataSourceComment>
+            <DataSourceConfig>&lt;IntervalSeconds&gt;86400&lt;/IntervalSeconds&gt;&lt;SyncTime&gt;08:00&lt;/SyncTime&gt;</DataSourceConfig>
+            <DataSourceType>System!System.SimpleScheduler</DataSourceType>
+          </RuleDataSourceItem>
+        </DataSources>
+        <ConditionDetectionId>CD</ConditionDetectionId>
+        <WriteActions>
+          <RuleWriteActionItem>
+            <WriteActionId>SendSMS</WriteActionId>
+            <WriteActionComment>Executes powershel script to send SMS using SMS Eagle JSON Api. IP, User and Password needs to be properly configured.</WriteActionComment>
+            <WriteActionConfig>&lt;SMSEagleIP&gt;0.0.0.0&lt;/SMSEagleIP&gt;&lt;Message&gt;SCOM and SMS Eagle Daily Checkin!&lt;/Message&gt;&lt;Receiver&gt;+4612345678&lt;/Receiver&gt;&lt;TimeoutSeconds&gt;120&lt;/TimeoutSeconds&gt;</WriteActionConfig>
+            <WriteActionRunAs />
+            <WriteActionType>Atea.SMSEagle.SendSMS.WriteAction</WriteActionType>
+            <WriteActionTarget />
+          </RuleWriteActionItem>
+        </WriteActions>
+      </CustomRuleConfig>
+    </Instance>
+  </Instances>
+</TemplateGroup>

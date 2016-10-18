@@ -14,11 +14,11 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Debug\</OutputPath>
-    <GenerateSealed>false</GenerateSealed>
-    <Company>MyCompany</Company>
-    <Copyright>Copyright (c) MyCompany. All rights reserved.</Copyright>
-    <DelaySigning>false</DelaySigning>
-    <AssemblyOriginatorKeyFile />
+    <GenerateSealed>True</GenerateSealed>
+    <Company>Atea Sverige AB</Company>
+    <Copyright>Copyright (c) Atea Sverige AB. All rights reserved.</Copyright>
+    <DelaySigning>False</DelaySigning>
+    <AssemblyOriginatorKeyFile>AteaST.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DebugSymbols>false</DebugSymbols>
@@ -32,11 +32,11 @@
   <ItemGroup>
     <ManagementPackReference Include="Microsoft.SystemCenter.Library">
       <Alias>SC</Alias>
-      <PackageToBundle>false</PackageToBundle>
+      <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
     <ManagementPackReference Include="Microsoft.Windows.Library">
       <Alias>Windows</Alias>
-      <PackageToBundle>false</PackageToBundle>
+      <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
     <ManagementPackReference Include="System.Health.Library">
       <Alias>Health</Alias>
@@ -52,6 +52,38 @@
     </ManagementPackReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="HealthModel" />
+    <Folder Include="HealthModel\Discoveries" />
+    <Folder Include="HealthModel\SecureReferences" />
+    <Folder Include="HealthModel\Rules" />
+    <Folder Include="ServiceModel" />
+    <Folder Include="ServiceModel\Classes" />
+    <Folder Include="ServiceModel\RelationShips" />
+    <Folder Include="TypeLibrary" />
+    <Folder Include="Scripts" />
+    <Folder Include="TypeLibrary\ModuleTypes" />
+    <Folder Include="TypeLibrary\ModuleTypes\WriteActions" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Send-EagleSMS.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HealthModel\Rules\SendSMSRules.mptg.mpx">
+      <SubType>Code</SubType>
+      <DependentUpon>HealthModel\Rules\SendSMSRules.mptg</DependentUpon>
+    </Compile>
+    <Compile Include="HealthModel\SecureReferences\SMSEagleLogin.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServiceModel\Classes\SMSEagleWatcher.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServiceModel\RelationShips\RMSHostsEagleWatcher.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TypeLibrary\ModuleTypes\WriteActions\SendSMS.WA.mpx">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ManagementPack.mpx">
       <SubType>Code</SubType>
     </Compile>
@@ -59,6 +91,10 @@
   <ItemGroup>
     <Content Include="AteaST.snk">
       <SubType>Content</SubType>
+    </Content>
+    <Content Include="HealthModel\Rules\SendSMSRules.mptg">
+      <SubType>Content</SubType>
+      <Generator>FragmentGenerator</Generator>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VSAC\Microsoft.SystemCenter.OperationsManager.targets" />
