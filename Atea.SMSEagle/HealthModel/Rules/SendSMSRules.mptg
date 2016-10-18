@@ -25,7 +25,7 @@
           <RuleWriteActionItem>
             <WriteActionId>SendSMS</WriteActionId>
             <WriteActionComment>Executes powershel script to send SMS using SMS Eagle JSON Api. IP, User and Password needs to be properly configured.</WriteActionComment>
-            <WriteActionConfig>&lt;SMSEagleIP&gt;0.0.0.0&lt;/SMSEagleIP&gt;&lt;Message&gt;SCOM and SMS Eagle Daily Checkin!&lt;/Message&gt;&lt;Receiver&gt;+4612345678&lt;/Receiver&gt;&lt;User&gt;admin&lt;/User&gt;&lt;Password&gt;password&lt;/Password&gt;&lt;TimeoutSeconds&gt;120&lt;/TimeoutSeconds&gt;</WriteActionConfig>
+            <WriteActionConfig>&lt;SMSEagleIP&gt;0.0.0.0&lt;/SMSEagleIP&gt;&lt;Message&gt;SCOM and SMS Eagle Daily Checkin!&lt;/Message&gt;&lt;Receiver&gt;+4612345678&lt;/Receiver&gt;&lt;TimeoutSeconds&gt;120&lt;/TimeoutSeconds&gt;</WriteActionConfig>
             <WriteActionRunAs />
             <WriteActionType>Atea.SMSEagle.SendSMS.WriteAction</WriteActionType>
             <WriteActionTarget />
