@@ -1,0 +1,18 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <SecureReferences>
+      <SecureReference ID="Atea.SMSEagle.Login" Accessibility="Public" Context="Atea.SMSEagle.SMSEagleWatcher" Comment="Used as login account against SMS Eagle devices" />
+    </SecureReferences>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="Atea.SMSEagle.Login">
+          <Name>Atea SMS Eagle User Profile</Name>
+          <Description><![CDATA[User profile targeted at SMS Eagle monitors and rules.
+Configure "simple" run-as accounts to use with this profile as SMS Eagle does not provide support for LDAP integration.]]></Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>
